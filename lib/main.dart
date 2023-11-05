@@ -12,7 +12,7 @@ import '../utils/const.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
- 
+
   runApp(MyApp());
 }
 
@@ -23,37 +23,37 @@ class MyApp extends StatefulWidget {
     _MyAppState createState() => _MyAppState();
 }
 class _MyAppState extends State<MyApp> {
-   static const platform = const MethodChannel('com.example.health_care/startService');
+  // static const platform = const MethodChannel('com.example.health_care/startService');
     @override
     void initState() {
         super.initState();
       PPService().init(context);
-        _startService();
-        if(PPService.b.value == 1){
-          print("hello");
-          relaunchApp();
-        }
+    //    _startService();
+        // if(PPService.b.value == 1){
+        //   print("hello");
+        //   relaunchApp();
+        // }
         
     }
 
-    Future<void> relaunchApp() async {
-  final packageInfo = await PackageInfo.fromPlatform();
-  final intent = AndroidIntent(
-    action: 'android.intent.action.MAIN',
-    package: packageInfo.packageName,
-    componentName: packageInfo.packageName,
-  );
-  await intent.launch();
-}
+//     Future<void> relaunchApp() async {
+//   final packageInfo = await PackageInfo.fromPlatform();
+//   final intent = AndroidIntent(
+//     action: 'android.intent.action.MAIN',
+//     package: packageInfo.packageName,
+//     componentName: packageInfo.packageName,
+//   );
+//   await intent.launch();
+// }
 
-    _startService() async {
-      try{
-        await platform.invokeMethod("startService");
-      } on PlatformException catch (e) {
-        print("Failed to start service");
-      }
+    // _startService() async {
+    //   try{
+    //     await platform.invokeMethod("startService");
+    //   } on PlatformException catch (e) {
+    //     print("Failed to start service");
+    //   }
         
-    }
+    // }
 
 
        
@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
       title: Constants.appName,
       theme: Constants.lighTheme(context),
       debugShowCheckedModeBanner: false,
-      home: PPService.b.value == 0 ? HomeScreen() : CountDownPage(),
+      home: HomeScreen(),
       routes: {
         '/home': (context) => HomeScreen(),
         '/counter': (context) => CountDownPage(),

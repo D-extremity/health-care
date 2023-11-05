@@ -26,13 +26,13 @@ class ContactCard extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(
-                  image,
-                  fit: BoxFit.contain,
+                  'assets/icons/profile_picture.png',
+                 // fit: BoxFit.contain,
                 ),
-                Text(
-                  name,
-                  style: TextStyle(fontSize: Constants.screenWidth! * 0.04),
-                ),
+                // Text(
+                //   name,
+                //   style: TextStyle(fontSize: Constants.screenWidth! * 0.04),
+                // ),
               ],
             ),
             flex: 1,

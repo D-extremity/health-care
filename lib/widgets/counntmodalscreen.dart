@@ -1,11 +1,14 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart'; // Import GetX
 import 'package:health_care/service/procupine_service.dart';
 
 import 'package:health_care/utils/const.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+
+import '../utils/api.dart';
 
 class CountDownPage extends StatelessWidget {
   const CountDownPage({super.key});
@@ -43,7 +46,7 @@ class CountDownPage extends StatelessWidget {
             
                               PPService.b.value = 0;
                               //PPService.porcupineManager.stop();
-                              launchUrlString("whatsapp://voice?phone=+918317072134");
+                              _callNumber(contact[0]['number']!);
                               Navigator.of(context).popAndPushNamed('/home');
                             },
                             isReverse: true,
@@ -146,3 +149,7 @@ class CountDownPage extends StatelessWidget {
              
 //               }
 
+_callNumber(String num) async {
+  final number = num; //set the number here
+  await FlutterPhoneDirectCaller.callNumber(number);
+}

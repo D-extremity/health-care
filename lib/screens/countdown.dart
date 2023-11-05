@@ -10,6 +10,8 @@ import 'package:health_care/utils/const.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import '../service/procupine_service.dart';
+
 class CountDownPage extends StatefulWidget {
   final String name;
   final String number;
@@ -45,7 +47,13 @@ class _CountDownPageState extends State<CountDownPage> {
               width: double.infinity,
               height: Constants.screenHeight! * 0.4,
               duration: 7,
-              onComplete: () async => await _callNumber(widget.number),
+              onComplete: () async {
+                
+                              PPService.b.value = 0;
+                              //PPService.porcupineManager.stop();
+                              await _callNumber( widget.number[0]);
+                              Navigator.of(context).popAndPushNamed('/home');
+              },
               fillColor: Colors.red,
               strokeWidth: 20,
               ringColor: Constants.darkBlue,

@@ -28,6 +28,7 @@ void _wakeWordCallback(int keywordIndex) {
       print("hello world");
       b.value = 1;
       // ShowModalBottomSheet(context);
+       Navigator.of(context).pushNamed('/counter');
       update();
         }
     else if (keywordIndex == 1) {

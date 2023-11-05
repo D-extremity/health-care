@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:health_care/backend/getimage.dart';
 import 'package:health_care/screens/contactscreen.dart';
 import 'package:health_care/service/procupine_service.dart';
-import 'package:health_care/utils/contacts.dart';
 import 'package:health_care/widgets/contact_circle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    //PPService.porcupineManager.start();
+   // PPService().init(context);
+
+
    
   }
 
@@ -50,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     double statusBarHeight = MediaQuery.of(context).padding.top;
     Constants().init(context);
-   // PPService controller = Get.put(PPService());
+   //PPService controller = Get.put(PPService());
     
 
     return Obx(() => PPService.b.value == 1? CountDownPage():  Scaffold(
@@ -223,26 +224,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  height: 140,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: contact.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
-                          onTap: () =>
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => ContactScreen(
-                                        imagee: contact[index]['image']!,
-                                        name: contact[index]['name']!,
-                                        number: contact[index]['number']!,
-                                      ))),
-                          child: ContactCard(
-                              image: contact[index]['image']!,
-                              name: contact[index]['name']!));
-                    },
-                  ),
-                ),
+                // Container(
+                //   height: 140,
+                //   child: ListView.builder(
+                //     scrollDirection: Axis.horizontal,
+                //     itemCount: contact.length,
+                //     itemBuilder: (BuildContext context, int index) {
+                //       return GestureDetector(
+                //           onTap: () =>
+                //               Navigator.of(context).push(MaterialPageRoute(
+                //                   builder: (context) => ContactScreen(
+                //                         imagee: contact[index]['image']!,
+                //                         name: contact[index]['name']!,
+                //                         number: contact[index]['number']!,
+                //                       ))),
+                //           child: ContactCard(
+                //               image: contact[index]['image']!,
+                //               name: contact[index]['name']!));
+                //     },
+                //   ),
+                // ),
                 SizedBox(height: 50),
 
                 // Scheduled Activities
