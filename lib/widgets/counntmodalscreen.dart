@@ -1,12 +1,20 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart'; // Import GetX
 import 'package:health_care/service/procupine_service.dart';
 
 import 'package:health_care/utils/const.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
+import '../utils/api.dart';
 
 class CountDownPage extends StatelessWidget {
   const CountDownPage({super.key});
+  // void urlcall() async
+  // {
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +40,15 @@ class CountDownPage extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(10),
                           child: CircularCountDownTimer(
+                            onComplete: () {
+                              // When countdown is complete, stop the service and navigate to the home screen
+                              //urlcall();
+            
+                              PPService.b.value = 0;
+                              //PPService.porcupineManager.stop();
+                              _callNumber(contact[0]['number']!);
+                              Navigator.of(context).popAndPushNamed('/home');
+                            },
                             isReverse: true,
                             width: Constants.screenWidth! * 0.7,
                             height: Constants.screenHeight! * 0.4,
@@ -132,3 +149,7 @@ class CountDownPage extends StatelessWidget {
              
 //               }
 
+_callNumber(String num) async {
+  final number = num; //set the number here
+  await FlutterPhoneDirectCaller.callNumber(number);
+}
